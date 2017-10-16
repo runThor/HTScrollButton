@@ -10,7 +10,7 @@
 
 @interface HTScrollButton : UIView
 
-// Config buttons
+// 配置按钮组
 - (void)configButtons:(NSArray *)buttons;
 
 @end

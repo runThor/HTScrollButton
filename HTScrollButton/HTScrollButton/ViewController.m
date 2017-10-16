@@ -24,7 +24,7 @@
     [self.view addSubview:HTView];
     
     NSMutableArray *buttonArr = [[NSMutableArray alloc] init];
-    
+    // 模拟按钮组
     for (int i = 0; i < 13; i++) {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
         [btn setTitle:[NSString stringWithFormat:@"%d", i + 1] forState:UIControlStateNormal];
@@ -32,6 +32,7 @@
         [buttonArr addObject:btn];
     }
     
+    // 传入按钮组
     [HTView configButtons:buttonArr];
 }
 

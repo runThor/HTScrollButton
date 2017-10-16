@@ -10,7 +10,7 @@
 
 @interface HTButtonScrollView : UIScrollView
 
-// Config buttons
+// 在ScrollView中配置按钮
 - (void)configButtons:(NSArray *)buttons;
 
 @end

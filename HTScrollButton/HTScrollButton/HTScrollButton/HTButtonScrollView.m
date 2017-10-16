@@ -10,7 +10,7 @@
 
 @interface HTButtonScrollView ()
 
-@property (nonatomic, strong) NSMutableArray *buttonArr;
+@property (nonatomic, strong) NSMutableArray *buttonArr;  // 按钮组
 
 @end
 
@@ -18,7 +18,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.pagingEnabled = YES;
+        self.pagingEnabled = YES;  // 翻页效果
         self.showsHorizontalScrollIndicator = NO;  
         self.buttonArr = [[NSMutableArray alloc] init];
     }
@@ -26,7 +26,7 @@
     return self;
 }
 
-// Config buttons
+// 配置按钮
 - (void)configButtons:(NSArray *)buttons {
     
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -37,7 +37,7 @@
         return;
     }
     
-    // 5 buttons on a page
+    // 默认一页5个按钮
     NSInteger pageCount = (buttons.count - 1)/5 + 1;
     CGFloat eachWidth;
     

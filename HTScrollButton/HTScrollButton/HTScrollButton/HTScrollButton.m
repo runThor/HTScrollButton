@@ -25,7 +25,7 @@
         self.scrollView.delegate = self;
         [self addSubview:self.scrollView];
         
-        // Left Arrow
+        // 左箭头
         self.leftArrowBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, self.frame.size.height/2 - 7.5, 10, 15)];
         [self.leftArrowBtn setBackgroundImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
         [self.leftArrowBtn addTarget:self action:@selector(leftArrowBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -44,18 +44,20 @@
 }
 
 
-// Config buttons
+// 配置按钮组
 - (void)configButtons:(NSArray *)buttons {
     if (buttons.count == 0) {
         return;
     } else if (buttons.count > 5) {
+        // 如按钮个数超过一页，则显示右箭头
         self.rightArrowBtn.hidden = NO;
     }
     
+    // 将按钮组配置到ScrollView上
     [self.scrollView configButtons:buttons];
 }
 
-
+// 点击左箭头向左翻页
 - (void)leftArrowBtnClicked:(UIButton *)btn {
     if (self.scrollView.contentOffset.x < self.scrollView.frame.size.width) {
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
@@ -64,7 +66,7 @@
     }
 }
 
-
+// 点击右箭头向右翻页
 - (void)rightArrowBtnClicked:(UIButton *)btn {
     if ((self.scrollView.contentOffset.x + self.scrollView.frame.size.width) > (self.scrollView.contentSize.width - self.scrollView.frame.size.width)) {
         [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width - self.scrollView.frame.size.width, 0) animated:YES];
@@ -76,13 +78,16 @@
 
 #pragma mark - UIScrollViewDelegate
 
+// 点击箭头滚动完成后调用
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    // 如滚动到最左侧，隐藏左箭头
     if (scrollView.contentOffset.x > 0) {
         self.leftArrowBtn.hidden = NO;
     } else {
         self.leftArrowBtn.hidden = YES;
     }
     
+    // 如滚动到最右侧，隐藏右箭头
     if ((scrollView.contentSize.width - scrollView.frame.size.width) > scrollView.contentOffset.x) {
         self.rightArrowBtn.hidden = NO;
     } else {
@@ -90,14 +95,16 @@
     }
 }
 
-
+// 拖拽滚动完成后调用
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // 如滚动到最左侧，隐藏左箭头
     if (scrollView.contentOffset.x > 0) {
         self.leftArrowBtn.hidden = NO;
     } else {
         self.leftArrowBtn.hidden = YES;
     }
     
+    // 如滚动到最右侧，隐藏右箭头
     if ((scrollView.contentSize.width - scrollView.frame.size.width) > scrollView.contentOffset.x) {
         self.rightArrowBtn.hidden = NO;
     } else {
